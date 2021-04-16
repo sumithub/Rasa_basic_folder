@@ -5,13 +5,14 @@
 - indeed
 - that's right
 - ok
+- okay
 - great
 - right, thank you
 - correct
 - great choice
 - sounds really good
 - thanks
-- thanks
+- alright
 
 ## intent:goodbye
 - bye
@@ -22,19 +23,27 @@
 - farewell
 - Bye bye
 - have a good one
+- tc
+
 
 ## intent:greet
 - hey
+- hola
 - howdy
 - hey there
 - hello
-- hi
+- hallo
+- good day
 - good morning
 - good evening
+- good afternoon
 - dear sir
 - hi
-- hi
-- hello
+- sup
+- Whats up
+- wassup
+- wasup
+
 
 ## intent:restaurant_search
 - i'm looking for a place to eat
@@ -75,20 +84,85 @@
 - [delhi](location)
 - please find me a restaurant in [ahmedabad](location)
 - please show me a few [italian](cuisine) restaurants in [bangalore](location)
+- show me restaurants in [delhi](location) under [500](price)
+- I'm looking for a [chinese](cuisine) restaurant under [1000](price)
+- Show me [italian](cuisine) restaurants in [pune](location) within [2000](price) rupees for [two](people)
+- [Mexican](cuisine) restaurants in [Pondicherry](location). My budget is [2000](price) for [3](people)
+- I want [south indian](cuisine) food
+- My budget is [750](price)
+- I'm hungry for [chinese](cuisine) food. I live in [Aurangabad](location) and i have [500](price) rupees
+- Im [broke](price:low)
+- [Cheap](price:low) places to eat
+- [Pocket friendly](price:low) restaurants
+- I feel like having food from [south india](cuisine)
+- Table for [3](people)
+- There are [5](people) of us
+- [budget friendly](price:low)
+- I want to [splurge](price:high) on [italian](cuisine) food
+- I feel like eating at an [expensive](price:high) restaurant
+- [Just me](people:1)
+
+## synonym:5
+- five
 
 ## synonym:4
 - four
 
+## synonym:3
+- three
+
+## synonym:2
+- two
+
+## synonym:1
+- one
+
 ## synonym:Delhi
 - New Delhi
+- deli
+- dilli
+- dhilli
 
-## synonym:bangalore
+## synonym:Pune
+- poona
+- puna
+
+## synonym:Mysore
+- Mysuru
+
+## synonym:Bangalore
 - Bengaluru
+- blore
+
+## synonym:Puducherry
+- Pondicherry
+
+## synonym:Kolkata
+- Calcutta
+
+## synonym:Shimla
+- Simla
+
+## synonym:Vizag
+- Visakhapatnam
+
+## synonym:Kochi
+- Cochin
+
+## synonym:Chennai
+- mardas
 
 ## synonym:chinese
 - chines
 - Chinese
 - Chines
+
+## synonym:South Indian
+- South india
+- North india
+
+## synonym:Mexican
+- mexico
 
 ## synonym:mid
 - moderate
@@ -96,9 +170,11 @@
 ## synonym:vegetarian
 - veggie
 - vegg
+- veg
 
 ## regex:greet
 - hey[^\s]*
+- hello[^\s]*
 
 ## regex:pincode
 - [0-9]{6}

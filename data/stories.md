@@ -9,9 +9,9 @@
 * restaurant_search{"cuisine": "chinese", "location": "delhi"}
     - slot{"cuisine": "chinese"}
     - slot{"location": "delhi"}
-    - utter_ask_budget
-* restaurant_search{"budget": "<300"}
-    - slot{"budget": "<300"}
+    - utter_ask_price
+* restaurant_search{"price": "300"}
+    - slot{"price": "300"}
     - action_search_restaurants
     - slot{"location": "delhi"}
     - utter_goodbye
@@ -41,9 +41,9 @@
 * restaurant_search{"cuisine": "North Indian", "location": "delhi"}
     - slot{"cuisine": "North Indian"}
     - slot{"location": "delhi"}
-    - utter_ask_budget
-* restaurant_search{"budget": "<300"}
-    - slot{"budget": "<300"}
+    - utter_ask_price
+* restaurant_search{"price": "800"}
+    - slot{"price": "800"}
     - action_search_restaurants
     - utter_goodbye
 
@@ -72,8 +72,9 @@
 * restaurant_search{"cuisine": "chinese", "location": "delhi"}
     - slot{"cuisine": "chinese"}
     - slot{"location": "delhi"}
-    - utter_ask_budget
-* restaurant_search{"budget": ">700"}
+    - utter_ask_price
+* restaurant_search{"price": "500"}
+    - slot{"price": "500"}
     - action_search_restaurants
     - slot{"location": "delhi"}
     - export
