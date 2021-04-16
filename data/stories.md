@@ -6,8 +6,12 @@
 * restaurant_search{"location": "delhi"}
     - slot{"location": "delhi"}
     - utter_ask_cuisine
-* restaurant_search{"cuisine": "chinese"}
+* restaurant_search{"cuisine": "chinese", "location": "delhi"}
     - slot{"cuisine": "chinese"}
+    - slot{"location": "delhi"}
+    - utter_ask_budget
+* restaurant_search{"budget": "<300"}
+    - slot{"budget": "<300"}
     - action_search_restaurants
     - slot{"location": "delhi"}
     - utter_goodbye
@@ -34,8 +38,12 @@
 * restaurant_search{"location": "delhi"}
     - slot{"location": "delhi"}
     - utter_ask_cuisine
-* restaurant_search{"cuisine": "North Indian"}
+* restaurant_search{"cuisine": "North Indian", "location": "delhi"}
     - slot{"cuisine": "North Indian"}
+    - slot{"location": "delhi"}
+    - utter_ask_budget
+* restaurant_search{"budget": "<300"}
+    - slot{"budget": "<300"}
     - action_search_restaurants
     - utter_goodbye
 
@@ -61,8 +69,11 @@
 * restaurant_search{"location": "delhi"}
     - slot{"location": "delhi"}
     - utter_ask_cuisine
-* restaurant_search{"cuisine": "chinese"}
+* restaurant_search{"cuisine": "chinese", "location": "delhi"}
     - slot{"cuisine": "chinese"}
+    - slot{"location": "delhi"}
+    - utter_ask_budget
+* restaurant_search{"budget": ">700"}
     - action_search_restaurants
     - slot{"location": "delhi"}
     - export
@@ -103,8 +114,8 @@
     - slot{"location": "delhi"}
 * affirm
     - utter_goodbye
-    
-    
+
+
 ## happy_path
 * greet
     - utter_greet
