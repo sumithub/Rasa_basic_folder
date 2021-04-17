@@ -44,8 +44,7 @@
 - wassup
 - wasup
 
-
-## intent:restaurant_search
+## intent:ask_restaurant
 - i'm looking for a place to eat
 - I want to grab lunch
 - I am searching for a dinner spot
@@ -71,6 +70,9 @@
 - I am looking for some restaurants in [Mumbai](location)
 - I am looking for [mexican indian fusion](cuisine)
 - can you book a table in [rome](location) in a [moderate](price:mid) price range with [british](cuisine) food for [four](people:4) people
+- can you find a [american](cuisine) restaurant in [gurgaon](location).
+- can you suggest an exclusive [mexican](cuisine) in [pune](location).
+- are there good [pizza](cuisine:italian) in [ahmedabad](location).
 - [central](location) [indian](cuisine) restaurant
 - please help me to find restaurants in [pune](location)
 - Please find me a restaurantin [bangalore](location)
@@ -86,10 +88,9 @@
 - please show me a few [italian](cuisine) restaurants in [bangalore](location)
 - show me restaurants in [delhi](location) under [500](price)
 - I'm looking for a [chinese](cuisine) restaurant under [1000](price)
-- Show me [italian](cuisine) restaurants in [pune](location) within [2000](price) rupees for [two](people)
-- [Mexican](cuisine) restaurants in [Pondicherry](location). My budget is [2000](price) for [3](people)
+- Show me [italian](cuisine) restaurants in [pune](location)
+- [Mexican](cuisine) restaurants in [Pondicherry](location).
 - I want [south indian](cuisine) food
-- My budget is [750](price)
 - I'm hungry for [chinese](cuisine) food. I live in [Aurangabad](location) and i have [500](price) rupees
 - Im [broke](price:low)
 - [Cheap](price:low) places to eat
@@ -102,6 +103,21 @@
 - I feel like eating at an [expensive](price:high) restaurant
 - [Just me](people:1)
 
+## intent:ask_budget
+- My maximum budget is 750
+- I need a cheap less than Rs 300 restaurant serving yummy chinese food
+- I don't mind paying more than 1000 for dinner in a fine dine restaurant.
+- Are there any reasonable priced mexican food restaurants
+
+## intent:ask_email
+- my email address is secret@abc.com
+- u can mail me abc@xyz.com
+- this is my email hello@mail.com
+
+## intent:out_of_scope
+ - can you suggest good french cuisine restaurants
+ - can you book mexican restaurant in salt lake city
+ - i want to eat bengali food for dinner
 ## synonym:5
 - five
 
@@ -156,6 +172,7 @@
 - chines
 - Chinese
 - Chines
+- dumplings
 
 ## synonym:South Indian
 - South india
