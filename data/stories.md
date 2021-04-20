@@ -6,12 +6,8 @@
 * ask_restaurant{"location": "delhi"}
     - slot{"location": "delhi"}
     - utter_ask_cuisine
-* ask_restaurant{"cuisine": "chinese", "location": "delhi"}
+* ask_restaurant{"cuisine": "chinese"}
     - slot{"cuisine": "chinese"}
-    - slot{"location": "delhi"}
-    - utter_ask_budget
-* ask_budget{"price": "300"}
-    - slot{"price": "300"}
     - action_search_restaurants
     - slot{"location": "delhi"}
     - utter_goodbye
@@ -38,12 +34,8 @@
 * ask_restaurant{"location": "delhi"}
     - slot{"location": "delhi"}
     - utter_ask_cuisine
-* ask_restaurant{"cuisine": "North Indian", "location": "delhi"}
+* ask_restaurant{"cuisine": "North Indian"}
     - slot{"cuisine": "North Indian"}
-    - slot{"location": "delhi"}
-    - utter_ask_budget
-* ask_budget{"price": "800"}
-    - slot{"price": "800"}
     - action_search_restaurants
     - utter_goodbye
 
@@ -69,12 +61,8 @@
 * ask_restaurant{"location": "delhi"}
     - slot{"location": "delhi"}
     - utter_ask_cuisine
-* ask_restaurant{"cuisine": "chinese", "location": "delhi"}
+* ask_restaurant{"cuisine": "chinese"}
     - slot{"cuisine": "chinese"}
-    - slot{"location": "delhi"}
-    - utter_ask_budget
-* ask_budget{"price": "500"}
-    - slot{"price": "500"}
     - action_search_restaurants
     - slot{"location": "delhi"}
     - export

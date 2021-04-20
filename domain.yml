@@ -1,24 +1,22 @@
 intents:
 - affirm
-- ask_restaurant
-- ask_budget
 - greet
 - goodbye
-- stop
+- ask_restaurant
+- ask_budget
+- ask_email
+- out_of_scope
 entities:
 - cuisine
 - location
-- price
-- people
 - budget
+- email
 slots:
   cuisine:
     type: text
   location:
     type: text
   budget:
-    type: text
-  price:
     type: text
 responses:
   utter_ask_cuisine:
@@ -41,7 +39,7 @@ responses:
   utter_ask_location:
   - text: In what location?
   utter_default:
-  - text: i cannot understand
+  - text: Sorry, I couldn't understand. Can you please rephrase your question?
   utter_goodbye:
   - text: goodbye :(
   - text: Bye-bye
@@ -52,19 +50,19 @@ responses:
   utter_ask_budget:
   - buttons:
     - title: Lesser than Rs. 300
-      payload: '/ask_budget{"budget": "299"}'
+      payload: cheap
     - title: Rs. 300 to 700
-      payload: '/ask_budget{"budget": "700"}'
+      payload: mid
     - title: More than Rs. 700
-      payload: '/ask_budget{"budget": "701"}'
+      payload: high
     text: What's the average budget for two people?
 actions:
-- action_search_restaurants
-- action_send_mail
-- utter_ask_cuisine
-- utter_ask_budget
+- utter_greet
 - utter_ask_howcanhelp
 - utter_ask_location
+- utter_ask_cuisine
+- utter_ask_budget
 - utter_default
 - utter_goodbye
-- utter_greet
+- action_search_restaurants
+- action_send_mail
