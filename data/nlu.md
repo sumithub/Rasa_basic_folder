@@ -140,6 +140,8 @@
 - Can you suggest some good restaurants in [Rishikesh](location)
 - Okay. Show me some in [Allahabad](location)
 - I’ll prefer [chines](cuisine:chinese)
+- can you find [portuguese](cuisine) restaurant?
+- I want to book [sri lankan](cusine) restaurant for dinner
 
 ## intent:ask_budget
 - My maximum budget is 750
@@ -169,7 +171,6 @@
 - share few more restaurant names with me
 - share this over mail
 - share this information with me over email
-
 
 ## intent:out_of_scope
  - can you suggest good french cuisine restaurants

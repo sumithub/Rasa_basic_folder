@@ -85,6 +85,38 @@ class ActionValidateCuisine(Action):
 
         return [SlotSet("cuisine_validity", cuisine_validity)]
 
+def filter_restaurant_by_budget(self, budget, restaurant_list) -> list:
+	filtered_restaurant_list = []
+
+	"""
+		Set the budget range based on input
+	"""
+	rangeMin = 0
+	rangeMax = 999999
+
+	if budget == "299":
+		rangeMax = 299
+	elif budget == "700":
+		rangeMin = 300
+		rangeMax = 700
+	elif budget == "701":
+		rangeMin = 701
+	else:
+		"""
+			Default budget
+		"""
+		rangeMin = 0
+		rangeMax = 9999
+
+	for restaurant in restaurant_list:
+		avg_cost = int(restaurant["Average Cost for two"])
+
+		if avg_cost >= rangeMin and avg_cost <= rangeMax:
+			filtered_restaurant_list.append(restaurant)
+
+	return filtered_restaurant_list
+
+
 class ActionSendMail(Action):
 	def name(self):
 		return 'action_send_mail'

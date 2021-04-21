@@ -1,33 +1,42 @@
+version: '2.0'
+session_config:
+  session_expiration_time: 60
+  carry_over_slots_to_new_session: true
 intents:
-- affirm
 - greet
-- goodbye
-- ask_restaurant
 - ask_budget
+- ask_restaurant
+- affirm
+- goodbye
 - ask_email
 - out_of_scope
 entities:
-- cuisine
-- location
 - budget
+- cuisine
 - email
+- location
 slots:
   cuisine:
     type: text
+    influence_conversation: true
   cuisine_validity:
     type: categorical
+    influence_conversation: true
     values:
     - valid
     - invalid
   location:
     type: text
+    influence_conversation: true
   location_validity:
     type: categorical
+    influence_conversation: true
     values:
     - valid
     - invalid
   budget:
     type: text
+    influence_conversation: true
 responses:
   utter_ask_cuisine:
   - buttons:
@@ -48,8 +57,12 @@ responses:
   - text: how can I help you?
   utter_ask_location:
   - text: In what location?
+  - text: Can you tell me the location you are looking for?
+  - text: Which city you would like to book in?
   utter_location_invalid:
   - text: Sorry, we don’t operate in this city. Can you please specify some other location
+  utter_cuisine_invalid:
+  - text: Sorry, we don’t book the requested cuisine. Would you like to choose among the following options?
   utter_default:
   - text: Sorry, I couldn't understand. Can you please rephrase your question?
   utter_goodbye:
@@ -62,21 +75,21 @@ responses:
   utter_ask_budget:
   - buttons:
     - title: Lesser than Rs. 300
-      payload: cheap
+      payload: '299'
     - title: Rs. 300 to 700
-      payload: mid
+      payload: '700'
     - title: More than Rs. 700
-      payload: high
+      payload: '701'
     text: What's the average budget for two people?
 actions:
-- utter_greet
-- utter_ask_howcanhelp
-- utter_ask_location
-- utter_ask_cuisine
-- utter_ask_budget
-- utter_default
-- utter_goodbye
-- action_search_restaurants
 - action_cuisine_valid
 - action_location_valid
+- action_search_restaurants
 - action_send_mail
+- utter_ask_budget
+- utter_ask_cuisine
+- utter_ask_howcanhelp
+- utter_ask_location
+- utter_default
+- utter_goodbye
+- utter_greet
