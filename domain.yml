@@ -14,8 +14,18 @@ entities:
 slots:
   cuisine:
     type: text
+  cuisine_validity:
+    type: categorical
+    values:
+    - valid
+    - invalid
   location:
     type: text
+  location_validity:
+    type: categorical
+    values:
+    - valid
+    - invalid
   budget:
     type: text
 responses:
@@ -38,6 +48,8 @@ responses:
   - text: how can I help you?
   utter_ask_location:
   - text: In what location?
+  utter_location_invalid:
+  - text: Sorry, we don’t operate in this city. Can you please specify some other location
   utter_default:
   - text: Sorry, I couldn't understand. Can you please rephrase your question?
   utter_goodbye:
@@ -65,4 +77,6 @@ actions:
 - utter_default
 - utter_goodbye
 - action_search_restaurants
+- action_cuisine_valid
+- action_location_valid
 - action_send_mail

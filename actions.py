@@ -31,9 +31,59 @@ class ActionSearchRestaurants(Action):
 			for restaurant in RestaurantSearch(loc,cuisine).iloc[:5].iterrows():
 				restaurant = restaurant[1]
 				response=response + F"Found {restaurant['Restaurant Name']} in {restaurant['Address']} rated {restaurant['Address']} with avg cost {restaurant['Average Cost for two']} \n\n"
-				
+
 		dispatcher.utter_message("-----"+response)
 		return [SlotSet('location',loc)]
+
+""" Custom action to validate input location
+"""
+class ActionValidateLocation(Action):
+    def name(self):
+        return "action_location_valid"
+
+    def run(self, dispatcher, tracker, domain):
+
+        location = tracker.get_slot("location")
+        location_validity = "valid"
+
+        if not location:
+            location_validity = "invalid"
+
+            location_validity = (
+                "valid" if location.lower() in (city.lower() for city in WeOperate) else "invalid"
+            )
+		#dispatcher.utter_message("-----"+location)
+        return [SlotSet("location_validity", location_validity)]
+
+
+""" Custom action to validate input cuisine
+"""
+class ActionValidateCuisine(Action):
+    def name(self):
+        return "action_cuisine_valid"
+
+    def run(self, dispatcher, tracker, domain):
+
+        cuisine = tracker.get_slot("cuisine")
+        cuisine_validity = "valid"
+
+        if not cuisine:
+            cuisine_validity = "invalid"
+        else:
+            supported_cuisines = [
+                "american",
+                "chinese",
+                "italian",
+                "mexican",
+                "north indian",
+                "south indian",
+            ]
+
+            cuisine_validity = (
+                "invalid" if cuisine.lower() not in supported_cuisines else "valid"
+            )
+
+        return [SlotSet("cuisine_validity", cuisine_validity)]
 
 class ActionSendMail(Action):
 	def name(self):
