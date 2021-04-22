@@ -14,9 +14,17 @@
 * ask_budget{"budget": "between 300 to 700"}
     - slot{"budget": "between 300 to 700"}
     - action_search_restaurants
+    - utter_ask_details
+* affirm
+    - utter_ask_email
+* ask_email{"email_id": "abc@abc.com"}
+    - slot{"email_id": "abc@abc.com"}
+    - action_send_email
+    - utter_confirm_email
 * affirm
   - utter_goodbye
 
+<!--
 ## story_2_location_invalid_retry
   * greet
       - utter_greet
@@ -57,3 +65,4 @@
       - action_search_restaurants
   * affirm
       - utter_goodbye
+-->

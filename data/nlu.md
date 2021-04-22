@@ -180,6 +180,7 @@
 - share few more restaurant names with me
 - share this over mail
 - share this information with me over email
+- [secret@gmail.com](email)
 
 ## intent:out_of_scope
  - can you suggest good french cuisine restaurants

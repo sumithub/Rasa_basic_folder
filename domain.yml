@@ -41,6 +41,12 @@ slots:
     - lesser than 300
     - between 300 to 700
     - more than 700
+  email_id:
+    type: text
+    influence_conversation: true
+  email_message:
+    type: text
+    influence_conversation: true
 responses:
   utter_ask_cuisine:
   - buttons:
@@ -72,6 +78,15 @@ responses:
   utter_goodbye:
   - text: goodbye :(
   - text: Bye-bye
+  utter_ask_details:
+  - text: Should I send you details of all the restaurants on email?
+  utter_ask_email:
+  - text: To what email id should I send it to?
+  utter_confirm_email:
+  - text: An email has been sent to you.
+  - text: Sent.
+  - text: Sent. Bon Appetit!
+  - text: Okay. Bon Appetit!
   utter_greet:
   - text: hey there! How may i help you
   - text: Hi, How can I help you!
@@ -89,7 +104,8 @@ actions:
 - action_cuisine_valid
 - action_location_valid
 - action_search_restaurants
-- action_send_mail
+- action_send_email
+- utter_ask_details
 - utter_ask_budget
 - utter_ask_cuisine
 - utter_ask_howcanhelp
@@ -97,3 +113,4 @@ actions:
 - utter_default
 - utter_goodbye
 - utter_greet
+- utter_confirm_email

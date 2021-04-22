@@ -23,7 +23,6 @@ class ActionSearchRestaurants(Action):
 		return 'action_search_restaurants'
 
 	def run(self, dispatcher, tracker, domain):
-		#config={ "user_key":"f4924dc9ad672ee8c4f8c84743301af5"}
 		loc = tracker.get_slot('location')
 		cuisine = tracker.get_slot('cuisine')
 		budget = tracker.get_slot('budget')
@@ -37,12 +36,11 @@ class ActionSearchRestaurants(Action):
 			response= "no results"
 		else:
 			for restaurant in filtered_restaurant_list:
-				#restaurant = restaurant[1]
-				response=response + F"Found {restaurant['Restaurant Name']} in {restaurant['Address']} rated {restaurant['Aggregate rating']} with avg cost {restaurant['Average Cost for two']} \n\n"
+				response=response + F" Showing you top rated restaurants {restaurant['Restaurant Name']} in {restaurant['Address']} rated {restaurant['Aggregate rating']} with avg cost {restaurant['Average Cost for two']} \n\n"
 
 		dispatcher.utter_message("-----"+response)
-		return
-		#return [SlotSet('location',loc)]
+		email_message = "This is mail message"
+		return [SlotSet("email_message", email_message)]
 
 """ Custom action to validate input location
 """
@@ -122,9 +120,14 @@ def filter_restaurant_by_budget(budget, restaurant_list) -> list:
 
 class ActionSendMail(Action):
 	def name(self):
-		return 'action_send_mail'
+		return 'action_send_email'
 
 	def run(self, dispatcher, tracker, domain):
-		MailID = tracker.get_slot('mail_id')
-		sendmail(MailID,response)
-		return [SlotSet('mail_id',MailID)]
+		email_id = tracker.get_slot('email_id')
+		email_message = tracker.get_slot('email_message')
+		sendmail(email_id,email_message)
+		return [SlotSet('email_id',email_id)]
+
+def sendmail(email_id,email_message):
+		print(email_id)
+		print(email_message)
