@@ -6,10 +6,12 @@ from rasa_sdk import Action
 from rasa_sdk.events import SlotSet
 import pandas as pd
 import json
+import logging
 
+logger = logging.getLogger(__name__)
 ZomatoData = pd.read_csv('zomato.csv')
 ZomatoData = ZomatoData.drop_duplicates().reset_index(drop=True)
-WeOperate = ['New Delhi', 'Gurgaon', 'Noida', 'Faridabad', 'Allahabad', 'Bhubaneshwar', 'Mangalore', 'Mumbai', 'Ranchi', 'Patna', 'Mysore', 'Aurangabad', 'Amritsar', 'Puducherry', 'Varanasi', 'Nagpur', 'Vadodara', 'Dehradun', 'Vizag', 'Agra', 'Ludhiana', 'Kanpur', 'Lucknow', 'Surat', 'Kochi', 'Indore', 'Ahmedabad', 'Coimbatore', 'Chennai', 'Guwahati', 'Jaipur', 'Hyderabad', 'Bangalore', 'Nashik', 'Pune', 'Kolkata', 'Bhopal', 'Goa', 'Chandigarh', 'Ghaziabad', 'Ooty', 'Gangtok', 'Shimla']
+WeOperate = ['Delhi', 'Gurgaon', 'Noida', 'Faridabad', 'Allahabad', 'Bhubaneshwar', 'Mangalore', 'Mumbai', 'Ranchi', 'Patna', 'Mysore', 'Aurangabad', 'Amritsar', 'Puducherry', 'Varanasi', 'Nagpur', 'Vadodara', 'Dehradun', 'Vizag', 'Agra', 'Ludhiana', 'Kanpur', 'Lucknow', 'Surat', 'Kochi', 'Indore', 'Ahmedabad', 'Coimbatore', 'Chennai', 'Guwahati', 'Jaipur', 'Hyderabad', 'Bangalore', 'Nashik', 'Pune', 'Kolkata', 'Bhopal', 'Goa', 'Chandigarh', 'Ghaziabad', 'Ooty', 'Gangtok', 'Shimla']
 
 def RestaurantSearch(City,Cuisine):
 	TEMP = ZomatoData[(ZomatoData['Cuisines'].apply(lambda x: Cuisine.lower() in x.lower())) & (ZomatoData['City'].apply(lambda x: City.lower() in x.lower()))]
@@ -33,7 +35,8 @@ class ActionSearchRestaurants(Action):
 				response=response + F"Found {restaurant['Restaurant Name']} in {restaurant['Address']} rated {restaurant['Address']} with avg cost {restaurant['Average Cost for two']} \n\n"
 
 		dispatcher.utter_message("-----"+response)
-		return [SlotSet('location',loc)]
+		return
+		#return [SlotSet('location',loc)]
 
 """ Custom action to validate input location
 """
@@ -42,19 +45,10 @@ class ActionValidateLocation(Action):
         return "action_location_valid"
 
     def run(self, dispatcher, tracker, domain):
-
-        location = tracker.get_slot("location")
-        location_validity = "valid"
-
-        if not location:
-            location_validity = "invalid"
-
-            location_validity = (
-                "valid" if location.lower() in (city.lower() for city in WeOperate) else "invalid"
-            )
-		#dispatcher.utter_message("-----"+location)
-        return [SlotSet("location_validity", location_validity)]
-
+    	location = tracker.get_slot("location")
+    	logger.debug(f"Find location -> '{location}'")
+    	location_validity = ("valid" if location.lower() in (city.lower() for city in WeOperate) else "invalid")
+    	return [SlotSet("location_validity", location_validity)]
 
 """ Custom action to validate input cuisine
 """
