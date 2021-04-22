@@ -144,11 +144,20 @@
 - I want to book [sri lankan](cusine) restaurant for dinner
 
 ## intent:ask_budget
-- My maximum budget is 750
-- I need a cheap less than Rs 300 restaurant serving yummy chinese food
-- I don't mind paying more than 1000 for dinner in a fine dine restaurant.
-- Are there any reasonable priced mexican food restaurants
-- looking for cheap under 500 chinese food to eat
+- [lesser than Rs. 300]{"entity": "budget", "value": "lesser than 300"}
+- [less than Rs. 300](budget:lesser than 300){"entity": "budget", "value": "lesser than 300"}
+- [<300](budget:lesser than 300){"entity": "budget", "value": "lesser than 300"}
+- [< 300](budget:lesser than 300){"entity": "budget", "value": "lesser than 300"}
+- [less than 300 rupees]{"entity": "budget", "value": "lesser than 300"}
+- [not more than 300]{"entity": "budget", "value": "lesser than 300"}
+- [>300]{"entity": "budget", "value": "between 300 to 700"}
+- [between 300 to 700]{"entity": "budget", "value": "between 300 to 700"}
+- [range 300-700]{"entity": "budget", "value": "between 300 to 700"}
+- [300-700]{"entity": "budget", "value": "between 300 to 700"}
+- [more than 700]{"entity": "budget", "value": "more than 700"}
+- [300 to 700 range]{"entity": "budget", "value": "between 300 to 700"}
+- [>700]{"entity": "budget", "value": "more than 700"}
+- [lesser than 300](budget)
 
 ## intent:ask_email
 - Please mail this information to me

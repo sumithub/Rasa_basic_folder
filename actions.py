@@ -88,12 +88,12 @@ def filter_restaurant_by_budget(self, budget, restaurant_list) -> list:
 	rangeMin = 0
 	rangeMax = 999999
 
-	if budget == "299":
+	if budget == "lesser than 300":
 		rangeMax = 299
-	elif budget == "700":
+	elif budget == "between 300 to 700":
 		rangeMin = 300
 		rangeMax = 700
-	elif budget == "701":
+	elif budget == "more than 700":
 		rangeMin = 701
 	else:
 		"""

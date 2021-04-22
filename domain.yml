@@ -35,8 +35,12 @@ slots:
     - valid
     - invalid
   budget:
-    type: text
+    type: categorical
     influence_conversation: true
+    values:
+    - lesser than 300
+    - between 300 to 700
+    - more than 700
 responses:
   utter_ask_cuisine:
   - buttons:
@@ -74,12 +78,12 @@ responses:
   - text: Hey, How is it going. How May I help you Today
   utter_ask_budget:
   - buttons:
-    - title: Lesser than Rs. 300
-      payload: '299'
-    - title: Rs. 300 to 700
-      payload: '700'
-    - title: More than Rs. 700
-      payload: '701'
+    - payload: lesser than 300
+      title: Lesser than Rs. 300
+    - payload: between 300 to 700
+      title: Rs. 300 to 700
+    - payload: more than 700
+      title: More than Rs. 700
     text: What's the average budget for two people?
 actions:
 - action_cuisine_valid
