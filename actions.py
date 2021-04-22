@@ -7,6 +7,7 @@ from rasa_sdk.events import SlotSet
 import pandas as pd
 import json
 import logging
+import operator
 
 logger = logging.getLogger(__name__)
 ZomatoData = pd.read_csv('zomato.csv')
@@ -37,7 +38,7 @@ class ActionSearchRestaurants(Action):
 		else:
 			for restaurant in filtered_restaurant_list:
 				#restaurant = restaurant[1]
-				response=response + F"Found {restaurant['Restaurant Name']} in {restaurant['Address']} rated {restaurant['Address']} with avg cost {restaurant['Average Cost for two']} \n\n"
+				response=response + F"Found {restaurant['Restaurant Name']} in {restaurant['Address']} rated {restaurant['Aggregate rating']} with avg cost {restaurant['Average Cost for two']} \n\n"
 
 		dispatcher.utter_message("-----"+response)
 		return
@@ -115,7 +116,8 @@ def filter_restaurant_by_budget(budget, restaurant_list) -> list:
 		if avg_cost >= rangeMin and avg_cost <= rangeMax:
 			filtered_restaurant_list.append(restaurant)
 			#print(restaurant['Average Cost for two'])
-	return filtered_restaurant_list
+	sorted_list = new_list = sorted(filtered_restaurant_list, key=operator.attrgetter('Aggregate rating'), reverse=True)
+	return sorted_list
 
 
 class ActionSendMail(Action):
