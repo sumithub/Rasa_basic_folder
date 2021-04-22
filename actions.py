@@ -25,13 +25,18 @@ class ActionSearchRestaurants(Action):
 		#config={ "user_key":"f4924dc9ad672ee8c4f8c84743301af5"}
 		loc = tracker.get_slot('location')
 		cuisine = tracker.get_slot('cuisine')
+		budget = tracker.get_slot('budget')
+		#print('budget -> ' +budget)
 		results = RestaurantSearch(City=loc,Cuisine=cuisine)
+		#print(len(results))
+		# filter list by ask_budget
+		filtered_restaurant_list = filter_restaurant_by_budget(budget,results)
 		response=""
-		if results.shape[0] == 0:
+		if len(filtered_restaurant_list) == 0:
 			response= "no results"
 		else:
-			for restaurant in RestaurantSearch(loc,cuisine).iloc[:5].iterrows():
-				restaurant = restaurant[1]
+			for restaurant in filtered_restaurant_list:
+				#restaurant = restaurant[1]
 				response=response + F"Found {restaurant['Restaurant Name']} in {restaurant['Address']} rated {restaurant['Address']} with avg cost {restaurant['Average Cost for two']} \n\n"
 
 		dispatcher.utter_message("-----"+response)
@@ -79,7 +84,7 @@ class ActionValidateCuisine(Action):
 
         return [SlotSet("cuisine_validity", cuisine_validity)]
 
-def filter_restaurant_by_budget(self, budget, restaurant_list) -> list:
+def filter_restaurant_by_budget(budget, restaurant_list) -> list:
 	filtered_restaurant_list = []
 
 	"""
@@ -102,12 +107,14 @@ def filter_restaurant_by_budget(self, budget, restaurant_list) -> list:
 		rangeMin = 0
 		rangeMax = 9999
 
-	for restaurant in restaurant_list:
-		avg_cost = int(restaurant["Average Cost for two"])
+	for restaurant in restaurant_list.iloc[:10].iterrows():
+		restaurant = restaurant[1]
+		#print(restaurant['Average Cost for two'])
+		avg_cost = restaurant["Average Cost for two"]
 
 		if avg_cost >= rangeMin and avg_cost <= rangeMax:
 			filtered_restaurant_list.append(restaurant)
-
+			#print(restaurant['Average Cost for two'])
 	return filtered_restaurant_list
 
 
