@@ -9,6 +9,10 @@ import json
 import logging
 import operator
 
+import smtplib
+from email.mime.multipart import MIMEMultipart
+from email.mime.text import MIMEText
+
 logger = logging.getLogger(__name__)
 ZomatoData = pd.read_csv('zomato.csv')
 ZomatoData = ZomatoData.drop_duplicates().reset_index(drop=True)
@@ -28,18 +32,24 @@ class ActionSearchRestaurants(Action):
 		budget = tracker.get_slot('budget')
 		#print('budget -> ' +budget)
 		results = RestaurantSearch(City=loc,Cuisine=cuisine)
-		#print(len(results))
+		print(len(results))
 		# filter list by ask_budget
 		filtered_restaurant_list = filter_restaurant_by_budget(budget,results)
+		print(len(filtered_restaurant_list))
 		response=""
 		if len(filtered_restaurant_list) == 0:
 			response= "no results"
 		else:
+			response = response + 'Showing you top rated ' + cuisine + ' restaurants in ' + loc +'\n \n'
+			counter = 0
 			for restaurant in filtered_restaurant_list:
-				response=response + F" Showing you top rated restaurants {restaurant['Restaurant Name']} in {restaurant['Address']} rated {restaurant['Aggregate rating']} with avg cost {restaurant['Average Cost for two']} \n\n"
-
+				if (counter <10):
+					counter = counter+1
+					response=response + F" {counter}. {restaurant['Restaurant Name']} in {restaurant['Address']} rated {restaurant['Aggregate rating']} with avg cost {restaurant['Average Cost for two']} \n\n"
+				else:
+					break
 		dispatcher.utter_message("-----"+response)
-		email_message = "This is mail message"
+		email_message = response
 		return [SlotSet("email_message", email_message)]
 
 """ Custom action to validate input location
@@ -106,7 +116,7 @@ def filter_restaurant_by_budget(budget, restaurant_list) -> list:
 		rangeMin = 0
 		rangeMax = 9999
 
-	for restaurant in restaurant_list.iloc[:10].iterrows():
+	for restaurant in restaurant_list.iloc[:100].iterrows():
 		restaurant = restaurant[1]
 		#print(restaurant['Average Cost for two'])
 		avg_cost = restaurant["Average Cost for two"]
@@ -131,3 +141,22 @@ class ActionSendMail(Action):
 def sendmail(email,email_message):
 		print(email)
 		print(email_message)
+		mail_content = email_message
+		#The mail addresses and password
+		sender_address = 'aibot2501@gmail.com'
+		sender_pass = 'humtum123'
+		receiver_address = email
+		#Setup the MIME
+		message = MIMEMultipart()
+		message['From'] = sender_address
+		message['To'] = receiver_address
+		message['Subject'] = 'A test mail sent by Rasa Chatbot. It has Top restaurant list'   #The subject line
+		#The body and the attachments for the mail
+		message.attach(MIMEText(mail_content, 'plain'))
+		#Create SMTP session for sending the mail
+		session = smtplib.SMTP('smtp.gmail.com', 587) #use gmail with port
+		session.starttls() #enable security
+		session.login(sender_address, sender_pass) #login with mail_id and password
+		text = message.as_string()
+		session.sendmail(sender_address, receiver_address, text)
+		session.quit()
