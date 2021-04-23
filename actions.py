@@ -123,11 +123,11 @@ class ActionSendMail(Action):
 		return 'action_send_email'
 
 	def run(self, dispatcher, tracker, domain):
-		email_id = tracker.get_slot('email_id')
+		email = tracker.get_slot('email')
 		email_message = tracker.get_slot('email_message')
-		sendmail(email_id,email_message)
-		return [SlotSet('email_id',email_id)]
+		sendmail(email,email_message)
+		return [SlotSet('email',email)]
 
-def sendmail(email_id,email_message):
-		print(email_id)
+def sendmail(email,email_message):
+		print(email)
 		print(email_message)

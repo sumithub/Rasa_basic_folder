@@ -1,4 +1,4 @@
-## story_1_location_cuisine_valid
+## story_1_location_cuisine_valid_with_email
 * greet
     - utter_greet
 * ask_restaurant
@@ -17,8 +17,8 @@
     - utter_ask_details
 * affirm
     - utter_ask_email
-* ask_email{"email_id": "abc@abc.com"}
-    - slot{"email_id": "abc@abc.com"}
+* ask_email{"email": "abc@abc.com"}
+    - slot{"email": "abc@abc.com"}
     - action_send_email
     - utter_confirm_email
 * affirm

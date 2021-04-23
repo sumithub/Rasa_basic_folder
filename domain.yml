@@ -41,7 +41,7 @@ slots:
     - lesser than 300
     - between 300 to 700
     - more than 700
-  email_id:
+  email:
     type: text
     influence_conversation: true
   email_message:
