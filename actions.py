@@ -32,10 +32,10 @@ class ActionSearchRestaurants(Action):
 		budget = tracker.get_slot('budget')
 		#print('budget -> ' +budget)
 		results = RestaurantSearch(City=loc,Cuisine=cuisine)
-		print(len(results))
+		#print(len(results))
 		# filter list by ask_budget
 		filtered_restaurant_list = filter_restaurant_by_budget(budget,results)
-		print(len(filtered_restaurant_list))
+		#print(len(filtered_restaurant_list))
 		response=""
 		if len(filtered_restaurant_list) == 0:
 			response= "no results"
@@ -45,7 +45,7 @@ class ActionSearchRestaurants(Action):
 			for restaurant in filtered_restaurant_list:
 				if (counter <10):
 					counter = counter+1
-					response=response + F" {counter}. {restaurant['Restaurant Name']} in {restaurant['Address']} rated {restaurant['Aggregate rating']} with avg cost {restaurant['Average Cost for two']} \n\n"
+					response=response + F" {counter}. {restaurant['Restaurant Name']} in {restaurant['Address']} has been rated {restaurant['Aggregate rating']} with avg cost {restaurant['Average Cost for two']} \n\n"
 				else:
 					break
 		dispatcher.utter_message("-----"+response)
@@ -139,8 +139,8 @@ class ActionSendMail(Action):
 		return [SlotSet('email',email)]
 
 def sendmail(email,email_message):
-		print(email)
-		print(email_message)
+		#print(email)
+		#print(email_message)
 		mail_content = email_message
 		#The mail addresses and password
 		sender_address = 'aibot2501@gmail.com'

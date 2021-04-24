@@ -10,6 +10,7 @@ intents:
 - goodbye
 - ask_email
 - out_of_scope
+- deny_email
 entities:
 - budget
 - cuisine
@@ -82,10 +83,12 @@ responses:
   - text: Should I send you details of all the restaurants on email?
   utter_ask_email:
   - text: To what email id should I send it to?
+  - text: What's your email id?
   utter_confirm_email:
   - text: An email has been sent to you.
   - text: Sent.
   - text: Sent. Bon Appetit!
+  utter_bon_appetit:
   - text: Okay. Bon Appetit!
   utter_greet:
   - text: hey there! How may i help you
@@ -114,3 +117,4 @@ actions:
 - utter_goodbye
 - utter_greet
 - utter_confirm_email
+- utter_bon_appetit

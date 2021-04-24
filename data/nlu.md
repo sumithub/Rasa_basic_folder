@@ -75,17 +75,25 @@
 - howz going
 - how r u?
 
+## intent:deny_email
+- no. thanks
+- no need
+- don't send email
+- no
+- don't think so
+- i don't need any email
+
 ## intent:ask_restaurant
 - i'm looking for a place to eat
 - I’m hungry. Looking out for some good restaurants
 - I want to grab lunch
 - I am searching for a dinner spot
 - I am looking for some restaurants in [Delhi](location).
-- I am looking for some restaurants in [Bangalore](location)
+- Can you find top rated restaurants in [bengaluru](location:Bangalore)
 - show me [chinese](cuisine) restaurants
 - show me [chines](cuisine:chinese) restaurants in the [New Delhi](location:Delhi)
 - show me a [mexican](cuisine) place in the [centre](location)
-- i am looking for an [indian](cuisine) spot called olaolaolaolaolaola
+- i am looking for an [north indian](cuisine) spot called olaolaolaolaolaola
 - search for restaurants
 - anywhere in the [west](location)
 - I am looking for [asian fusion](cuisine) food
@@ -270,6 +278,7 @@
 - Mysuru
 
 ## synonym:Bangalore
+- bengaluru
 - Bengaluru
 - blore
 - b'lore
