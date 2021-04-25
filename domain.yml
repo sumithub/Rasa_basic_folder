@@ -10,7 +10,7 @@ intents:
 - goodbye
 - ask_email
 - out_of_scope
-- deny_email
+- deny
 entities:
 - budget
 - cuisine
@@ -71,7 +71,7 @@ responses:
   - text: Can you tell me the location you are looking for?
   - text: Which city you would like to book in?
   utter_location_invalid:
-  - text: Sorry, we don’t operate in this city. Can you please specify some other location
+  - text: We do not operate in that area yet. Can you please specify some other location
   utter_cuisine_invalid:
   - text: Sorry, we don’t book the requested cuisine. Would you like to choose among the following options?
   utter_default:

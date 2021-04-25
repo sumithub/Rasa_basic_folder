@@ -75,13 +75,30 @@
 - howz going
 - how r u?
 
-## intent:deny_email
+## intent:deny
 - no. thanks
 - no need
 - don't send email
 - no
 - don't think so
 - i don't need any email
+- i decline
+- never mind
+- nevermind
+- nah thanks
+- neither of these
+- i don't like that option
+- neither will work
+- suggest some other option
+- is this the best you can do
+- nah not for me
+- nah
+- no and no again
+- no go
+- no thanks
+- decline
+- deny
+
 
 ## intent:ask_restaurant
 - i'm looking for a place to eat
@@ -98,6 +115,7 @@
 - anywhere in the [west](location)
 - I am looking for [asian fusion](cuisine) food
 - I am looking a restaurant in [294328](location)
+- looking for restaurants in [surat](location)
 - in [Gurgaon](location)
 - [South Indian](cuisine)
 - [North Indian](cuisine)
@@ -150,6 +168,11 @@
 - I’ll prefer [chines](cuisine:chinese)
 - can you find [portuguese](cuisine) restaurant?
 - I want to book [sri lankan](cusine) restaurant for dinner
+- find me a restaurant in [vizi](location:Vizag)
+- book me an [italian](cuisine) retsurant in [milan](location)
+- find a [chinese](cuisine) restaurant in [pune](location)
+- i want to eat [rajasthani](cuisine) thali tonite
+- [Kolkata](location)
 
 ## intent:ask_budget
 - [lesser than Rs. 300]{"entity": "budget", "value": "lesser than 300"}
@@ -189,6 +212,7 @@
 - share this over mail
 - share this information with me over email
 - [secret@gmail.com](email)
+- yes send it to [foodie@vgt.com](email)
 
 ## intent:out_of_scope
  - can you suggest good french cuisine restaurants
@@ -321,6 +345,9 @@
 - veggie
 - vegg
 - veg
+
+## synonym:italian
+- pizza
 
 ## regex:greet
 - hey[^\s]*

@@ -36,21 +36,27 @@ class ActionSearchRestaurants(Action):
 		# filter list by ask_budget
 		filtered_restaurant_list = filter_restaurant_by_budget(budget,results)
 		#print(len(filtered_restaurant_list))
-		response=""
+		console_response=""
+		email_response=""
 		if len(filtered_restaurant_list) == 0:
-			response= "no results"
+			console_response= "no results"
 		else:
-			response = response + 'Showing you top rated ' + cuisine + ' restaurants in ' + loc +'\n \n'
+			title = 'Showing you top rated ' + cuisine + ' restaurants in ' + loc +'\n \n'
+			console_response = console_response + title
+			email_response = email_response + title
 			counter = 0
 			for restaurant in filtered_restaurant_list:
 				if (counter <10):
 					counter = counter+1
-					response=response + F" {counter}. {restaurant['Restaurant Name']} in {restaurant['Address']} has been rated {restaurant['Aggregate rating']} with avg cost {restaurant['Average Cost for two']} \n\n"
+					# email_response
+					email_response=email_response + F" {counter}.Restaurant: {restaurant['Restaurant Name']} \n Address: {restaurant['Address']} \n Average Cost for two: {restaurant['Average Cost for two']} \n Zomato user rating: {restaurant['Aggregate rating']} \n\n"
+					# console response
+					if (counter < 5):
+						console_response=console_response + F" {counter}. {restaurant['Restaurant Name']} in {restaurant['Address']} has been rated {restaurant['Aggregate rating']}\n\n"
 				else:
 					break
-		dispatcher.utter_message("-----"+response)
-		email_message = response
-		return [SlotSet("email_message", email_message)]
+		dispatcher.utter_message("-----"+console_response)
+		return [SlotSet("email_message", email_response)]
 
 """ Custom action to validate input location
 """
@@ -139,24 +145,27 @@ class ActionSendMail(Action):
 		return [SlotSet('email',email)]
 
 def sendmail(email,email_message):
-		#print(email)
-		#print(email_message)
-		mail_content = email_message
-		#The mail addresses and password
-		sender_address = 'aibot2501@gmail.com'
-		sender_pass = 'humtum123'
-		receiver_address = email
-		#Setup the MIME
-		message = MIMEMultipart()
-		message['From'] = sender_address
-		message['To'] = receiver_address
-		message['Subject'] = 'A test mail sent by Rasa Chatbot. It has Top restaurant list'   #The subject line
-		#The body and the attachments for the mail
-		message.attach(MIMEText(mail_content, 'plain'))
-		#Create SMTP session for sending the mail
-		session = smtplib.SMTP('smtp.gmail.com', 587) #use gmail with port
-		session.starttls() #enable security
-		session.login(sender_address, sender_pass) #login with mail_id and password
-		text = message.as_string()
-		session.sendmail(sender_address, receiver_address, text)
-		session.quit()
+    print(email_message)
+    mail_content = email_message
+    #The mail addresses and password
+    sender_address = 'aibot2501@gmail.com'
+    sender_pass = 'humtum123'
+    receiver_address = email
+    #Setup the MIME
+    message = MIMEMultipart()
+    message['From'] = sender_address
+    message['To'] = receiver_address
+    message['Subject'] = 'A test mail sent by Rasa Chatbot. It has Top restaurant list'   #The subject line
+    #The body and the attachments for the mail
+    message.attach(MIMEText(mail_content, 'plain'))
+    #Create SMTP session for sending the mail
+    try:
+        session = smtplib.SMTP('smtp.gmail.com', 587) #use gmail with port
+        session.starttls() #enable security
+        session.login(sender_address, sender_pass) #login with mail_id and password
+        text = message.as_string()
+        session.sendmail(sender_address, receiver_address, text)
+        session.quit()
+    except Exception as e:
+        print("failed to send an email")
+        print(e)
