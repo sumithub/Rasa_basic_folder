@@ -117,6 +117,7 @@
 - I am looking a restaurant in [294328](location)
 - looking for restaurants in [surat](location)
 - in [Gurgaon](location)
+- in [mubaim](location)
 - [South Indian](cuisine)
 - [North Indian](cuisine)
 - [Italian](cuisine)
@@ -200,7 +201,7 @@
 - Please email this to me
 - mail me [emial@india.com](email)
 - Email it to me
-- my email address is [secret@abc.com](email)
+- my email address is [jddk.2jmd@kdl.co.in](email)
 - u can mail me [abc@xyz.com](email)
 - this is my email [hello@mail.com](email)
 - mail me the list
@@ -213,6 +214,8 @@
 - share this information with me over email
 - [secret@gmail.com](email)
 - yes send it to [foodie@vgt.com](email)
+- this is my email address - [email-abc_123@abc.com.edu](email). send me an email.
+- yes. Please send it to [xyz@sth.edu](email)
 
 ## intent:out_of_scope
  - can you suggest good french cuisine restaurants

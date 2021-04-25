@@ -38,6 +38,7 @@ class ActionSearchRestaurants(Action):
 		#print(len(filtered_restaurant_list))
 		console_response=""
 		email_response=""
+		are_results_valid = "valid"
 		if len(filtered_restaurant_list) == 0:
 			console_response= "no results"
 		else:
@@ -56,7 +57,11 @@ class ActionSearchRestaurants(Action):
 				else:
 					break
 		dispatcher.utter_message("-----"+console_response)
-		return [SlotSet("email_message", email_response)]
+		# check results validity
+		are_results_valid = (
+			"invalid" if len(filtered_restaurant_list) == 0 else "valid"
+		)
+		return [SlotSet("email_message", email_response), SlotSet("results_validity", are_results_valid)]
 
 """ Custom action to validate input location
 """

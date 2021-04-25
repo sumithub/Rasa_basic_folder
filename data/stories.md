@@ -14,6 +14,7 @@
 * ask_budget{"budget": "between 300 to 700"}
     - slot{"budget": "between 300 to 700"}
     - action_search_restaurants
+    - slot{"results_validity": "valid"}
     - utter_ask_details
 * affirm
     - utter_ask_email
@@ -41,6 +42,7 @@
       - slot{"budget": "300-700 range"}
       - action_search_restaurants
       - slot{"email_message": ""}
+      - slot{"results_validity": "valid"}
       - utter_ask_details
   * deny
       - utter_bon_appetit
@@ -63,6 +65,7 @@
     - slot{"budget": "more than 700"}
     - action_search_restaurants
     - slot{"email_message": ""}
+    - slot{"results_validity": "valid"}
     - utter_ask_details
 * ask_email{"email": "xyz@sth.edu"}
     - slot{"email": "xyz@sth.edu"}
@@ -86,6 +89,7 @@
     - slot{"budget": "lesser than 300"}
     - action_search_restaurants
     - slot{"email_message": ""}
+    - slot{"results_validity": "valid"}
     - utter_ask_details
   * affirm
     - utter_ask_email
@@ -109,6 +113,7 @@
   - slot{"budget": "lesser than 300"}
   - action_search_restaurants
   - slot{"email_message": ""}
+  - slot{"results_validity": "valid"}
   - utter_ask_details
 * affirm
   - utter_ask_email
@@ -135,6 +140,7 @@
   - slot{"budget": "between 300 to 700"}
   - action_search_restaurants
   - slot{"email_message": ""}
+  - slot{"results_validity": "valid"}
   - utter_ask_details
 * affirm
   - utter_ask_email
@@ -154,6 +160,7 @@
   - slot{"budget": "more than 700"}
   - action_search_restaurants
   - slot{"email_message": ""}
+  - slot{"results_validity": "valid"}
   - utter_ask_details
 * ask_email{"email": "abc@typ.com"}
   - slot{"email": "abc@typ.com"}
@@ -172,6 +179,7 @@
   - slot{"budget": "more than 700"}
   - action_search_restaurants
   - slot{"email_message": ""}
+  - slot{"results_validity": "valid"}
   - utter_ask_details
 * deny
   - utter_bon_appetit
@@ -199,6 +207,7 @@
       - slot{"budget": "more than 700"}
       - action_search_restaurants
       - slot{"email_message": ""}
+      - slot{"results_validity": "valid"}
       - utter_ask_details
   * affirm
       - utter_ask_email
@@ -229,6 +238,7 @@
       - slot{"budget": "more than 700"}
       - action_search_restaurants
       - slot{"email_message": ""}
+      - slot{"results_validity": "valid"}
       - utter_ask_details
   * ask_email{"email": "foodie@vgt.com"}
       - slot{"email": "foodie@vgt.com"}
@@ -237,3 +247,22 @@
       - utter_confirm_email
   * affirm
       - utter_goodbye
+
+## story_12_no_results_found
+* greet
+  - utter_greet
+* ask_restaurant
+  - utter_ask_location
+* ask_restaurant{"location": "delhi"}
+  - slot{"location": "delhi"}
+  - action_location_valid
+  - slot{"location_validity": "valid"}
+  - utter_ask_cuisine
+* ask_restaurant{"cuisine": "american"}
+  - slot{"cuisine": "american"}
+  - utter_ask_budget
+* ask_budget{"budget": "lesser than 300"}
+  - slot{"budget": "lesser than 300"}
+  - action_search_restaurants
+  - slot{"results_validity": "invalid"}
+  - utter_goodbye

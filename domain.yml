@@ -35,6 +35,12 @@ slots:
     values:
     - valid
     - invalid
+  results_validity:
+    type: categorical
+    influence_conversation: true
+    values:
+    - valid
+    - invalid
   budget:
     type: categorical
     influence_conversation: true
@@ -90,6 +96,8 @@ responses:
   - text: Sent. Bon Appetit!
   utter_bon_appetit:
   - text: Okay. Bon Appetit!
+  utter_no_results:
+  - text: Sorry, couldn't find any restaurant for your specific preferences.
   utter_greet:
   - text: hey there! How may i help you
   - text: Hi, How can I help you!
