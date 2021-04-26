@@ -40,7 +40,7 @@ class ActionSearchRestaurants(Action):
 		email_response=""
 		are_results_valid = "valid"
 		if len(filtered_restaurant_list) == 0:
-			console_response= "no results"
+			console_response= "Sorry, couldn't find any restaurant for your specific preferences."
 		else:
 			title = 'Showing you top rated ' + cuisine + ' restaurants in ' + loc +'\n \n'
 			console_response = console_response + title
@@ -150,7 +150,7 @@ class ActionSendMail(Action):
 		return [SlotSet('email',email)]
 
 def sendmail(email,email_message):
-    print(email_message)
+    #print(email_message)
     mail_content = email_message
     #The mail addresses and password
     sender_address = 'aibot2501@gmail.com'

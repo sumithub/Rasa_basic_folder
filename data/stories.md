@@ -22,8 +22,6 @@
     - slot{"email": "abc@abc.com"}
     - action_send_email
     - utter_confirm_email
-* affirm
-    - utter_goodbye
 
 ## story_2_location_cuisine_valid_deny_email
   * greet
@@ -71,8 +69,6 @@
     - slot{"email": "xyz@sth.edu"}
     - action_send_email
     - utter_confirm_email
-* affirm
-    - utter_goodbye
 
 ## story_4_location_given
   * greet
@@ -97,8 +93,6 @@
     - slot{"email": "petu@south.com"}
     - action_send_email
     - utter_confirm_email
-  * affirm
-    - utter_goodbye
 
 ## story_5_no_greet
 * ask_restaurant{"location": "vizag"}
@@ -121,8 +115,6 @@
   - slot{"email": "petu@south.com"}
   - action_send_email
   - utter_confirm_email
-* affirm
-  - utter_goodbye
 
 ## story_6_no_greet_invalid_location_retry
 * ask_restaurant{"location": "vizi"}
@@ -148,8 +140,6 @@
   - slot{"email": ".com"}
   - action_send_email
   - utter_confirm_email
-* affirm
-  - utter_goodbye
 
 ## story_7_given_location_cuisine_with_valid_email
 * ask_restaurant{"cuisine": "chinese", "location": "goa"}
@@ -167,8 +157,6 @@
   - action_send_email
   - slot{"email": "abc@typ.com"}
   - utter_confirm_email
-* affirm
-  - utter_goodbye
 
 ## story_8_given_location_cuisine_deny_email
 * ask_restaurant{"location": "pune", "cuisine": "north indian"}
@@ -216,8 +204,6 @@
       - action_send_email
       - slot{"email": "abc@xyz.com"}
       - utter_confirm_email
-  * affirm
-      - utter_goodbye
 
 ## story_11_given_invalid_cuisine_retry
   * ask_restaurant{"cuisine": "rajasthani"}
@@ -245,8 +231,6 @@
       - action_send_email
       - slot{"email": "foodie@vgt.com"}
       - utter_confirm_email
-  * affirm
-      - utter_goodbye
 
 ## story_12_no_results_found
 * greet
@@ -266,3 +250,31 @@
   - action_search_restaurants
   - slot{"results_validity": "invalid"}
   - utter_goodbye
+
+## story_13_complete_path_with_goodbye
+  * greet
+      - utter_greet
+  * ask_restaurant
+      - utter_ask_location
+  * ask_restaurant{"location": "delhi"}
+      - slot{"location": "delhi"}
+      - action_location_valid
+      - slot{"location_validity": "valid"}
+      - utter_ask_cuisine
+  * ask_restaurant{"cuisine": "chinese"}
+      - slot{"cuisine": "chinese"}
+      - utter_ask_budget
+  * ask_budget{"budget": "between 300 to 700"}
+      - slot{"budget": "between 300 to 700"}
+      - action_search_restaurants
+      - slot{"results_validity": "valid"}
+      - utter_ask_details
+  * affirm
+      - utter_ask_email
+  * ask_email{"email": "abc@abc.com"}
+      - slot{"email": "abc@abc.com"}
+      - action_send_email
+      - utter_confirm_email
+      - utter_goodbye
+  * affirm
+      - utter_goodbye
